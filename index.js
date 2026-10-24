@@ -25,6 +25,7 @@ const dayOfWeekEl = document.getElementById("day-of-week");
 const minuteEl = document.getElementById("minutes");
 const ampmEl = document.getElementById("am-pm");
 const timeContainerEl = document.getElementById("time-text-container");
+const centerImg = document.getElementById("center-img");
 
 /* GLOBAL STATE */
 
@@ -40,10 +41,19 @@ const weather = {
   weatherUpdateTicks: Math.round(Math.random() * 50) + 50,
   currentSeasonIdx: 0,
 };
+let duration = 7000;
 const timer = {
   ticks: 0,
-  nextTarget: performance.now() + 7000,
+  nextTarget: performance.now() + duration,
 };
+
+centerImg.addEventListener("click", () => {
+  if (duration === 7000) {
+    duration = 700;
+  } else {
+    duration = 7000;
+  }
+});
 
 function updateWeather() {
   if (timer.ticks === weather.weatherUpdateTicks) {
@@ -129,7 +139,7 @@ function updateDOMProperties() {
 function tick() {
   // Should call all update functions
   timer.ticks += 1;
-  timer.nextTarget += 7000;
+  timer.nextTarget += duration;
   const delay = Math.max(0, timer.nextTarget - performance.now());
   updateTime();
   updateDays();
@@ -138,4 +148,4 @@ function tick() {
   updateDOMProperties();
   setTimeout(tick, delay);
 }
-setTimeout(tick, 7000);
+setTimeout(tick, duration);
