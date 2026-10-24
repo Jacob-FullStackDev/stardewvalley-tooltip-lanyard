@@ -19,6 +19,7 @@ html {
 }
 img {
   width: calc(100% / 3);
+  height: 172px;
   margin: 0;
   padding: 0;
 }
@@ -36,11 +37,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-#date-text-container {
-  font-size: 142px;
-}
-#time-text-container {
   font-size: 80px;
 }
 #day-of-week,
